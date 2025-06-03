@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends Website</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+    
+</style>
+<body>
+    <!-- Desktop Theme Toggle -->
+    <button class="desktop-theme-toggle" id="desktop-theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <nav>
+        <div class="nav-container">
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>Our Squad</h1>
+            <div class="nav-links-container">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#journey">Journey</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <!-- Mobile Theme Toggle -->
+                    <li class="theme-toggle-item">
+                        <button id="theme-toggle" onclick="toggleTheme()">
+                            <i class="fas fa-moon"></i>
+                            <span>Toggle Theme</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+     <!--  <div class="slideshow">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')"></div>
+        </div> -->
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text-wrapper">
+                <h1 class="glowing-text">Welcome to Our Space</h1>
+                <p class="animated-text">Get to know us better!</p>
+                <div class="hero-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="friends-section">
+        <h2>Meet the Squad</h2>
+        <div class="friends-container">
+            <!-- Ryel's Section -->
+            <div class="friend-card" onclick="openResumeModal('ryel-resume')">
+                <div class="friend-img">
+                    <img src="image/ryelpic.jpg" alt="Ryel Maghanoy">
+                </div>
+                <h3>Ryel Maghanoy</h3>
+                <div class="friend-details">
+                    <div class="skills-section">
+                        <h4>Skills</h4>
+                        <div class="skill-bar">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                                <span class="percentage">85%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 30%"></div>
+                                </div>
+                                <span class="percentage">30%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">PhpMyAdmin</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 40%"></div>
+                                </div>
+                                <span class="percentage">40%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">Php</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                                <span class="percentage">20%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">Photoshop</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 60%"></div>
+                                </div>
+                                <span class="percentage">60%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">Sketchup</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                                <span class="percentage">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-section">
+                        <h4>Education</h4>
+                        <p>BS Information Technology</p>
+                        <p>Agusan del Sur State College of Agriculture and Technology</p>
+                        <p>2025 - Present</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" onclick="event.stopPropagation()"><i class="fab fa-facebook"></i></a>
+                    <a href="#" onclick="event.stopPropagation()"><i class="fab fa-instagram"></i></a>
+                    <a href="#" onclick="event.stopPropagation()"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="view-resume-hint">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Click</span>
+                </div>
+            </div>
+
+            <!-- Resume Modal for Ryel -->
+            <div id="ryel-resume" class="resume-modal">
+                <div class="resume-modal-content">
+                    <span class="close-resume-modal">&times;</span>
+                    <div class="resume-container">
+                        <img src="image/CURRICULUM VITAE.jpg" alt="Ryel's Resume" class="resume-image">
+                    </div>
+                    <div class="resume-actions">
+                        <a href="image/CURRICULUM VITAE.jpg" download class="download-resume">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mico's Section -->
+            <div class="friend-card" onclick="openResumeModal('mico-resume')">
+                <div class="friend-img">
+                    <img src="image/mico.jpg" alt="Mico Quimson">
+                </div>
+                <h3>Mico Quimson</h3>
+                <div class="friend-details">
+                    <div class="skills-section">
+                        <h4>Skills</h4>
+                        <div class="skill-bar">
+                            <span class="skill-name">Photography</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 70%"></div>
+                                </div>
+                                <span class="percentage">70%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 78%"></div>
+                                </div>
+                                <span class="percentage">78%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">Photoshop</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 40%"></div>
+                                </div>
+                                <span class="percentage">30%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                                <span class="percentage">20%</span>
+                            </div>
+                        </div>
+
+                         <div class="skill-bar">
+                            <span class="skill-name">Sketchup</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 30%"></div>
+                                </div>
+                                <span class="percentage">30%</span>
+                            </div>
+                        </div>
+
+                         <div class="skill-bar">
+                            <span class="skill-name">Boxing</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 95%"></div>
+                                </div>
+                                <span class="percentage">95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-section">
+                        <h4>Education</h4>
+                        <p>BS Information Technology</p>
+                        <p>Agusan del Sur State College of Agriculture and Technology</p>
+                        <p>2025 - Present</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" onclick="event.stopPropagation()"><i class="fab fa-facebook"></i></a>
+                    <a href="#" onclick="event.stopPropagation()"><i class="fab fa-instagram"></i></a>
+                    <a href="#" onclick="event.stopPropagation()"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="view-resume-hint">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Click</span>
+                </div>
+            </div>
+
+            <!-- Resume Modal for Mico -->
+            <div id="mico-resume" class="resume-modal">
+                <div class="resume-modal-content">
+                    <span class="close-resume-modal">&times;</span>
+                    <div class="resume-container">
+                        <img src="image/CURRICULUM VITAE (1).jpg" alt="Mico's Resume" class="resume-image">
+                    </div>
+                    <div class="resume-actions">
+                        <a href="image/CURRICULUM VITAE (1).jpg" download class="download-resume">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Junry's Section -->
+            <div class="friend-card" onclick="openResumeModal('junry-resume')">
+                <div class="friend-img">
+                    <img src="image/junry.jpg" alt="Junry Pacot">
+                </div>
+                <h3>Junry Pacot</h3>
+                <div class="friend-details">
+                    <div class="skills-section">
+                        <h4>Skills</h4>
+                        <div class="skill-bar">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 95%"></div>
+                                </div>
+                                <span class="percentage">95%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 30%"></div>
+                                </div>
+                                <span class="percentage">30%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">Photoshop</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                                <span class="percentage">80%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">Sketchup</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%"></div>
+                                </div>
+                                <span class="percentage">80%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">c#</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 35%"></div>
+                                </div>
+                                <span class="percentage">35%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">c++</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 50%"></div>
+                                </div>
+                                <span class="percentage">50%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-section">
+                        <h4>Education</h4>
+                        <p>BS Information Technology</p>
+                        <p>Agusan del Sur State College of Agriculture and Technology</p>
+                        <p>2025 - Present</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="view-resume-hint">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Click</span>
+                </div>
+            </div>
+
+             <!-- Resume Modal for Junry -->
+            <div id="junry-resume" class="resume-modal">
+                <div class="resume-modal-content">
+                    <span class="close-resume-modal">&times;</span>
+                    <div class="resume-container">
+                        <img src="image/resume.jpg" alt="Junry's Resume" class="resume-image">
+                    </div>
+                    <div class="resume-actions">
+                        <a href="image/resume.jpg" download class="download-resume">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- James's Section -->
+            <div class="friend-card" onclick="openResumeModal('james-resume')">
+                <div class="friend-img">
+                    <img src="image/james.jpg" alt="James Almero">
+                </div>
+                <h3>James Almero</h3>
+                <div class="friend-details">
+                    <div class="skills-section">
+                        <h4>Skills</h4>
+                        <div class="skill-bar">
+                            <span class="skill-name">HTML/CSS</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 50%"></div>
+                                </div>
+                                <span class="percentage">50%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 10%"></div>
+                                </div>
+                                <span class="percentage">10%</span>
+                            </div>
+                        </div>
+
+                        <div class="skill-bar">
+                            <span class="skill-name">c++</span>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 30%"></div>
+                                </div>
+                                <span class="percentage">30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="education-section">
+                        <h4>Education</h4>
+                        <p>BS Information Technology</p>
+                        <p>Agusan del Sur State College of Agriculture and Technology</p>
+                        <p>2025 - Present</p>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="view-resume-hint">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Click</span>
+                </div>
+            </div>
+
+            <!-- Resume Modal for James -->
+            <div id="james-resume" class="resume-modal">
+                <div class="resume-modal-content">
+                    <span class="close-resume-modal">&times;</span>
+                    <div class="resume-container">
+                        <img src="image/mico-resume.jpg" alt="Jame's Resume" class="resume-image">
+                    </div>
+                    <div class="resume-actions">
+                        <a href="image/mico-resume.jpg" download class="download-resume">
+                            <i class="fas fa-download"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2>Our Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Web Development</h3>
+                <p>Custom websites</p>
+                <a href="web-development.html" class="service-btn">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Graphic Design</h3>
+                <p>Logos, branding, Poster, and UI/UX</p>
+                <a href="graphic-design.html" class="service-btn">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Photography</h3>
+                <p>Professional photo shoots, event coverage, and photo editing</p>
+                <div class="coming-soon-badge">We're Growing – Be Part of It</div>
+                <a href="photography.html" class="service-btn">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Video Editing</h3>
+                <p>Video production, editing, and motion graphics</p>
+                <div class="coming-soon-badge">We're Growing – Be Part of It</div>
+                <a href="video-editing.html" class="service-btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <h2>Our Projects</h2>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+            <button class="filter-btn" data-filter="mobile">sketch</button>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item" data-category="web">
+                <div class="portfolio-image">
+                    <img src="image/e commerce.png">
+                    <div class="portfolio-overlay">
+                        <h3>E-commerce Website</h3>
+                        <p>Business Product Ordering System with PHP and MySQL</p>
+                        <div class="portfolio-links">
+                            <a href="/public/404.html" class="btn-view">View Project</a>
+                            <a href="/public/404.html" target="_blank" class="btn-github">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h4>E-commerce Platform</h4>
+                    <p>React, Node.js, PhpMyAdmin</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="design">
+                <div class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1740059021917-425431914689?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHBob3Rvc2hvcCUyMGxvZ298ZW58MHx8MHx8fDA%3D">
+                    <div class="portfolio-overlay">
+                        <h3>Logo and Brand Asset Design</h3>
+                        <p>Photoshop-Based Brand Package Design</p>
+                        <div class="portfolio-links">
+                            <a href="/public/404.html" class="btn-view">View Project</a>
+                            <a href="/public/404.html" target="_blank" class="btn-github">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h4>Brand Identity</h4>
+                    <p>Adobe Creative Suite</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item" data-category="mobile">
+                <div class="portfolio-image">
+                    <img src="image/fitness app.png">
+                    <div class="portfolio-overlay">
+                        <h3>Fitness App UI Mockup in SketchUp</h3>
+                        <p>Workout & Nutrition Mobile App</p>
+                        <div class="portfolio-links">
+                            <a href="/public/404.html" class="btn-view">View Project</a>
+                            <a href="/public/404.html" target="_blank" class="btn-github">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h4>Fitness App</h4>
+                    <p>sketchup</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Modals 
+    <div class="modal" id="modal-web">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Web Development Services</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="service-details">
+                    <h3>What We Offer</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Custom Website Development</li>
+                        <li><i class="fas fa-check"></i> E-commerce Solutions</li>
+                        <li><i class="fas fa-check"></i> Web Applications</li>
+                        <li><i class="fas fa-check"></i> Responsive Design</li>
+                        <li><i class="fas fa-check"></i> Website Maintenance</li>
+                    </ul>
+                    <div class="pricing">
+                        <h3>Pricing</h3>
+                        <p>Starting from ₱100-₱200</p>
+                        <small>*Price varies based on project requirements</small>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p><i class="fas fa-envelope"></i> Email: oursquad@gamil.com</p>
+                        <p><i class="fas fa-phone"></i> Phone: 09543447495</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Maintained by BSIT boys</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-design">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Graphic Design Services</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="service-details">
+                    <h3>What We Offer</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Logo Design</li>
+                        <li><i class="fas fa-check"></i> Simple Brand Elements</li>
+                        <li><i class="fas fa-check"></i> Marketing Collateral Design (e.g., flyers, posters)</li>
+                        <li><i class="fas fa-check"></i> Social Media Post Graphics</li>
+                        <li><i class="fas fa-check"></i> Print Design</li>
+                    </ul>
+                    <div class="pricing">
+                        <h3>Pricing</h3>
+                        <p>Starting from ₱200</p>
+                        <small>*Price varies based on project requirements</small>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p><i class="fas fa-envelope"></i> Email: oursquad@gamil.com</p>
+                        <p><i class="fas fa-phone"></i> Phone: 09543447495</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Maintained by BSIT boys</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-photo">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Photography Services - Coming Soon</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="service-details">
+                    <div class="coming-soon-message">
+                        <i class="fas fa-clock"></i>
+                        <h3>Service Coming Soon!</h3>
+                        <p>We're currently recruiting talented photographers to join our team. Once we have the right people, we'll offer:</p>
+                    </div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Event Photography</li>
+                        <li><i class="fas fa-check"></i> Portrait Sessions</li>
+                        <li><i class="fas fa-check"></i> Product Photography</li>
+                        <li><i class="fas fa-check"></i> Photo Editing</li>
+                        <li><i class="fas fa-check"></i> Photography Workshops</li>
+                    </ul>
+                    <div class="notify-section">
+                        <h3>Want to Join Our Team?</h3>
+                        <p>If you're a photographer interested in joining us, or if you'd like to be notified when this service becomes available, please contact us!</p>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> Email: oursquad@gamil.com</p>
+                            <p><i class="fas fa-phone"></i> Phone: 09543447495</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Maintained by BSIT boys</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-video">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Video Editing Services - Coming Soon</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="service-details">
+                    <div class="coming-soon-message">
+                        <i class="fas fa-clock"></i>
+                        <h3>Service Coming Soon!</h3>
+                        <p>We're currently recruiting talented video editors to join our team. Once we have the right people, we'll offer:</p>
+                    </div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Video Editing</li>
+                        <li><i class="fas fa-check"></i> Motion Graphics</li>
+                        <li><i class="fas fa-check"></i> Color Grading</li>
+                        <li><i class="fas fa-check"></i> Sound Design</li>
+                        <li><i class="fas fa-check"></i> Video Effects</li>
+                    </ul>
+                    <div class="notify-section">
+                        <h3>Want to Join Our Team?</h3>
+                        <p>If you're a video editor interested in joining us, or if you'd like to be notified when this service becomes available, please contact us!</p>
+                        <div class="contact-info">
+                            <p><i class="fas fa-envelope"></i> Email: video@example.com</p>
+                            <p><i class="fas fa-phone"></i> Phone: (123) 456-7890</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <p>Maintained by BSIT boys</p>
+            </div>
+        </div>
+    </div>
+    -->
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <h2 style="text-align: center; margin-bottom: 20px;">Latest Articles</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80" alt="Web Development Tips">
+                    <div class="blog-category">Web Development</div>
+                </div>
+                <div class="blog-content">
+                    <h3>Essential Web Development Tools for 2024</h3>
+                    <p>Explore the key tools and technologies that every beginner web developer should get familiar with in 2024...</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-user"></i> Ryel Maghanoy</span>
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                    </div>
+                    <a href="/public/404.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&q=80" alt="UI/UX Design">
+                    <div class="blog-category">Design</div>
+                </div>
+                <div class="blog-content">
+                    <h3>UI/UX Design Trends to Watch in 2025</h3>
+                    <p>Stay ahead of the curve with these emerging trends in user interface and experience design...</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-user"></i> Mico Quimson</span>
+                        <span><i class="far fa-calendar"></i> April 12, 2025</span>
+                    </div>
+                    <a href="/public/404.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">
+                    <img src="https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?auto=format&fit=crop&w=800&q=80" alt="Mobile Development">
+                    <div class="blog-category">Mobile</div>
+                </div>
+                <div class="blog-content">
+                    <h3>Getting Started with Front-End Web Development</h3>
+                    <p>An easy guide to building your first website from scratch...</p>
+                    <div class="blog-meta">
+                        <span><i class="far fa-user"></i> Junry Pacot</span>
+                        <span><i class="far fa-calendar"></i> March 5, 2023</span>
+                    </div>
+                    <a href="/public/404.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="journey" class="timeline-section">
+        <h2>Our Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2024</div>
+                    <h3>Beginning of BSIT Journey</h3>
+                    <p>Started our journey in ASSCAT as BSIT freshmen..</p>
+                    <div class="timeline-image">
+                        <img src="image/mamayotay.jpg">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2025</div>
+                    <h3>First Entry for Programming</h3>
+                    <p>di pinalad manalo pero thankfull ako sa na experience ko...</p>
+                    <div class="achievement-badges">
+                        <span class="badge"><i class="fas fa-trophy"></i> Top 4 overall</span>
+                        <span class="badge"><i class="fas fa-star"></i> Top 5 overall Junry Pacot</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2025</div>
+                    <h3>Iglesia ni Cristo</h3>
+                    <p>Kanang maka instructor kag, siya na ang pinaka hawd maong di nami e guide pasagdan na lang HAHA.</p>
+                    <div class="timeline-image">
+                        <img src="image/bayho.jpg">
+                    </div>
+                    <div class="certification-list">
+                        <span class="cert-badge"><i class="fas fa-certificate"></i> INC Cloud Practitioner</span>
+                        <span class="cert-badge"><i class="fas fa-certificate"></i> INC Developer</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">2025</div>
+                    <h3>Launching Our Services</h3>
+                    <p>Started offering professional web development and design services while continuing our studies.</p>
+                    <div class="milestone-stats">
+                        <div class="stat">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="testimonials" class="features-section">
+        <h2>What We Offer</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Clean Code</h3>
+                    <p>We write maintainable, efficient, and well-documented code following best practices and industry standards.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Organized Structure</li>
+                        <li><i class="fas fa-check"></i> Easy to Maintain</li>
+                        <li><i class="fas fa-check"></i> Well Documented</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Responsive Design</h3>
+                    <p>Our websites and applications are fully responsive, ensuring perfect display across all devices and screen sizes.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Mobile First</li>
+                        <li><i class="fas fa-check"></i> Cross-Browser Compatible</li>
+                        <li><i class="fas fa-check"></i> Adaptive Layouts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Performance Optimized</h3>
+                    <p>We focus on creating fast-loading, optimized websites that provide excellent user experience.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Fast Loading</li>
+                        <li><i class="fas fa-check"></i> Optimized Assets</li>
+                        <li><i class="fas fa-check"></i> Efficient Code</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Secure Development</h3>
+                    <p>Security is our priority. We implement robust security measures to protect your data and users.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Data Protection</li>
+                        <li><i class="fas fa-check"></i> Secure Coding</li>
+                        <li><i class="fas fa-check"></i> Regular Updates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Modern UI/UX</h3>
+                    <p>Creating beautiful, intuitive interfaces that provide exceptional user experience and engagement.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> User-Friendly</li>
+                        <li><i class="fas fa-check"></i> Modern Design</li>
+                        <li><i class="fas fa-check"></i> Interactive Elements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="feature-content">
+                    <h3>Dedicated Support</h3>
+                    <p>We provide ongoing support and maintenance to ensure your project runs smoothly after launch.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Quick Response</li>
+                        <li><i class="fas fa-check"></i> Regular Maintenance</li>
+                        <li><i class="fas fa-check"></i> Technical Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Gallery 
+    <section id="achievements" class="achievements-section">
+        <h2>Our Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Best Capstone Project</h3>
+                <p>UNTA HAHA DAGHAN BATAK KAYA PANGARAP NA LANG </p>
+                <div class="achievement-image">
+                    <img src= alt="Award Ceremony">
+                </div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3></h3>
+                <p></p>
+                <div class="achievement-image">
+                    <img src= alt="Hackathon">
+                </div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Dean's Lister</h3>
+                <p>Consistent Academic Excellence</p>
+                <div class="achievement-image">
+                    <img src= alt="Academic Achievement">
+                </div>
+            </div>
+
+            <div class="achievement-card">
+                <div class="achievement-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3>Certifications</h3>
+                <div class="cert-container">
+                    <div class="cert-item">
+                        <img src= alt="AWS Certification">
+                        <span>AWS Certified</span>
+                    </div>
+                  <div class="cert-item">
+                        <img src= alt="Meta Certification">
+                        <span>Meta Certified</span>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </section>
+    -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Get in Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info-box">
+                <div class="contact-info">
+                    <h3>Project Inquiries</h3>
+                    <p><i class="fas fa-laptop-code"></i> Web Development Projects</p>
+                    <p><i class="fas fa-palette"></i> Design Collaborations</p>
+                    <p><i class="fas fa-mobile-alt"></i> SketchUp</p>
+                </div>
+                <div class="availability">
+                    <h3>Project Status</h3>
+                    <div class="status-indicators">
+                        <div class="status-item">
+                            <span class="status-dot available"></span>
+                            <p>Accepting New Projects</p>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot medium"></span>
+                            <p>Current Workload: Medium</p>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-dot fast"></span>
+                            <p>Response Time: < 24 hours</p>
+                        </div>
+                    </div>
+                    <div class="availability-note">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Best time to reach us: 9 AM - 5 PM PHT</p>
+                    </div>
+                </div>
+                <div class="project-types">
+                    <h3>Project Types</h3>
+                    <div class="project-tags">
+                        <span class="tag">Websites</span>
+                        <span class="tag">UI/UX</span>
+                        <span class="tag">logo, Poster</span>
+                        <span class="tag">Branding</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-container">
+                <h3>On Progress</h3>
+                <div class="skills-showcase">
+                    <div class="skill-item">
+                        <i class="fab fa-node-js"></i>
+                        <div class="skill-info">
+                            <h4>Node js</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 15%"></div>
+                                </div>
+                                <span>15%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-react"></i>
+                        <div class="skill-info">
+                            <h4>React js</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 10%"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-laravel"></i>
+                        <div class="skill-info">
+                            <h4>Laravel</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 10%"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-python"></i>
+                        <div class="skill-info">
+                            <h4>Python</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 10%"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-php"></i>
+                        <div class="skill-info">
+                            <h4>PHP</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 5%"></div>
+                                </div>
+                                <span>5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fas fa-database"></i>
+                        <div class="skill-info">
+                            <h4>MySQL</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 10%"></div>
+                                </div>
+                                <span>10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-bootstrap"></i>
+                        <div class="skill-info">
+                            <h4>Bootstrap</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 20%"></div>
+                                </div>
+                                <span>20%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-git-alt"></i>
+                        <div class="skill-info">
+                            <h4>Git</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 5%"></div>
+                                </div>
+                                <span>5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fab fa-figma"></i>
+                        <div class="skill-info">
+                            <h4>Figma</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 2%"></div>
+                                </div>
+                                <span>2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fas fa-pen-nib"></i>
+                        <div class="skill-info">
+                            <h4>Illustrator</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span>1%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <div class="skill-info">
+                            <h4>Photoshop</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 25%"></div>
+                                </div>
+                                <span>25%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <i class="fas fa-cube"></i>
+                        <div class="skill-info">
+                            <h4>Sketchup</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 15%"></div>
+                                </div>
+                                <span>15%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d291.3452263787463!2d125.98921352813247!3d8.176214944146505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e0!4m0!4m3!3m2!1d8.1763094!2d125.9893525!5e1!3m2!1sen!2sph!4v1748436867779!5m2!1sen!2sph" referrerpolicy="no-referrer-when-downgrade"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p class="footer-description">We are a team of passionate BSIT students dedicated to creating innovative web solutions and delivering exceptional digital experiences.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="https://tik-tok-downloader-phi.vercel.app/">Tiktok Downloader</a></li>
+                    <li><a href="junrychatgpt/scical.html">Calculator by Junry</a></li>
+                    <li><a href="junrychatgpt/Junry.html">Ask Junrychatbot – Free & Unlimited Q&A 🤖</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                    <li><a href="#">Logo, Poster Design</a></li>
+                    <li><a href="#">Graphic Design</a></li>
+                    <li><a href="#">Mamayotay</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <div class="footer-contact">
+                    <p><i class="fas fa-map-marker-alt"></i> Agusan del Sur State College of Agriculture and Technology</p>
+                    <p><i class="fas fa-phone"></i> +63 9543447495</p>
+                    <p><i class="fas fa-envelope"></i> oursquad@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Our Squad. All rights reserved.</p>
+            <p>Designed with <i class="fas fa-heart"></i> by BSIT boys</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+
+      function toggleDropdown() {
+    const dropdown = document.getElementById("contactDropdown");
+    dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+  }
+
+    function openResumeModal(modalId) {
+        document.getElementById(modalId).style.display = "flex";
+    }
+
+    // Close modal when clicking the close button or outside the modal
+    document.addEventListener('DOMContentLoaded', function() {
+        const modals = document.querySelectorAll('.resume-modal');
+        const closeButtons = document.querySelectorAll('.close-resume-modal');
+
+        closeButtons.forEach(button => {
+            button.onclick = function() {
+                button.closest('.resume-modal').style.display = "none";
+            }
+        });
+
+        modals.forEach(modal => {
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+
+        // Prevent social links from triggering modal
+        const socialLinks = document.querySelectorAll('.social-links a');
+        socialLinks.forEach(link => {
+            link.onclick = function(e) {
+                e.stopPropagation();
+            }
+        });
+    });
+    </script>
+</body>
+</html> 

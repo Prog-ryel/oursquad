@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatJP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="https://junrypacot.github.io/ChatJP_/style.css">
+    <script src="https://junrypacot.github.io/ChatJP_/script.js" defer></script>
+</head>
+<style>
+    /* Importing Google font - Open Sans */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+a {
+    text-decoration: none;
+}
+body {
+    height: 100vh;
+    width: 100%;
+    background: url("https://junrypacot.github.io/ChatJP_/hero-bg.jpg") center/cover no-repeat;
+}
+
+header {
+    width: 100%;
+    background-color: gray;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 22px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.navbar .hamburger-btn {
+    display: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.navbar .logo {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.navbar .logo img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.navbar .logo h2 {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.navbar .links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+    align-items: center;
+}
+
+.navbar .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: none;
+    color: #000;
+    cursor: pointer;
+}
+
+.navbar .links a {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.1s ease;
+}
+
+.navbar .links a:hover {
+    color: #19e8ff;
+}
+
+.navbar .login-btn {
+    border: none;
+    outline: none;
+    background: #4bb7e9;
+    color: #050505;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.navbar .login-btn:hover {
+    background: #fdfdfd;
+}
+
+.form-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    max-width: 720px;
+    background: #fff;
+    border: 2px solid #fff;
+    transform: translate(-50%, -70%);
+}
+
+.show-popup .form-popup {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease, opacity 0.1s;
+}
+
+.form-popup .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #878484;
+    cursor: pointer;
+}
+
+.blur-bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: 0.1s ease;
+}
+
+.show-popup .blur-bg-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.form-popup .form-box {
+    display: flex;
+}
+
+.form-box .form-details {
+    width: 100%;
+    color: #fff;
+    max-width: 330px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .form-details {
+    padding: 0 40px;
+    background: url("https://junrypacot.github.io/ChatJP_/login-img.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.signup .form-details {
+    padding: 0 20px;
+    background: url("https://junrypacot.github.io/ChatJP_/signup-img.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.form-box .form-content {
+    width: 100%;
+    padding: 35px;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 29px;
+}
+
+form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 0 15px;
+    border: 1px solid #717171;
+    border-radius: 3px;
+}
+
+.input-field input:focus {
+    border: 1px solid #00bcd4;
+}
+
+.input-field label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #4a4646;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) {
+    padding: 16px 15px 0;
+}
+
+.input-field input:is(:focus, :valid)~label {
+    transform: translateY(-120%);
+    color: #00bcd4;
+    font-size: 0.75rem;
+}
+
+.form-box a {
+    color: #00bcd4;
+    text-decoration: none;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+form :where(.forgot-pass-link, .policy-text) {
+    display: inline-flex;
+    margin-top: 13px;
+    font-size: 0.95rem;
+}
+
+form button {
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 25px 0;
+    background: #00bcd4;
+    transition: 0.2s ease;
+}
+
+form button:hover {
+    background: #0097a7;
+}
+
+.form-content .bottom-link {
+    text-align: center;
+}
+
+.form-popup .signup,
+.form-popup.show-signup .login {
+    display: none;
+}
+
+.form-popup.show-signup .signup {
+    display: flex;
+}
+
+.signup .policy-text {
+    display: flex;
+    margin-top: 14px;
+    align-items: center;
+}
+
+.signup .policy-text input {
+    width: 14px;
+    height: 14px;
+    margin-right: 7px;
+}
+
+@media (max-width: 950px) {
+    .navbar :is(.hamburger-btn, .close-btn) {
+        display: block;
+    }
+
+    .navbar {
+        padding: 15px 0;
+    }
+
+    .navbar .logo img {
+        display: none;
+    }
+
+    .navbar .logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .navbar .links {
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        left: -100%;
+        display: block;
+        height: 100vh;
+        width: 100%;
+        padding-top: 60px;
+        text-align: center;
+        background: #fff;
+        transition: 0.2s ease;
+    }
+
+    .navbar .links.show-menu {
+        left: 0;
+    }
+
+    .navbar .links a {
+        display: inline-flex;
+        margin: 20px 0;
+        font-size: 1.2rem;
+        color: #000;
+    }
+
+    .navbar .links a:hover {
+        color: #00BCD4;
+    }
+
+    .navbar .login-btn {
+        font-size: 0.9rem;
+        padding: 7px 10px;
+    }
+}
+
+@media (max-width: 760px) {
+    .form-popup {
+        width: 95%;
+    }
+
+    .form-box .form-details {
+        display: none;
+    }
+
+    .form-box .form-content {
+        padding: 30px 20px;
+    }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.title-container h1 {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
+    font-size: 6vw;
+}
+
+/* Chatbot Button */
+.chatbot-toggler {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    outline: none;
+    border: none;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: hsl(220, 33%, 98%);
+    transition: all 0.2s ease;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 999;
+    cursor: pointer;
+}
+
+body.show-chatbot .chatbot-toggler {
+    transform: rotate(90deg);
+}
+
+.chatbot-toggler span {
+    position: absolute;
+    display: flex;
+}
+
+.chatbot-toggler span:first-child img {
+    width: 30px;
+}
+
+.chatbot-toggler span:last-child img {
+    width: 15px;
+}
+
+.chatbot-toggler span:last-child,
+body.show-chatbot .chatbot-toggler span:first-child  {
+    opacity: 0;
+}
+
+body.show-chatbot .chatbot-toggler span:last-child {
+    opacity: 1;
+}
+
+/* Chatbot Container */
+.chatbot {
+    position: fixed;
+    right: 75px;
+    bottom: 90px;
+    width: 450px;
+    max-width: 95%;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.5);
+    transform-origin: bottom right;
+    box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
+                0 32px 64px -48px rgba(0,0,0,0.5);
+    transition: all 0.2s ease;
+    z-index: 998;
+}
+
+body.show-chatbot .chatbot {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.chatbot header {
+    padding: 16px;
+    position: relative;
+    color: #fff;
+    background: #529cf1;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.chatbot header h2 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.chatbot header small {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    font-size: 0.85rem;
+}
+
+.chatbot header small img {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+}
+
+/* Chatbox */
+.chatbot .chatbox {
+    overflow-y: auto;
+    height: 465px;
+    padding: 30px 20px 100px;
+}
+
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 25px;
+}
+
+.chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 25px;
+}
+
+.chatbox .chat {
+    display: flex;
+    list-style: none;
+}
+
+.chatbox .outgoing {
+    margin: 20px 0;
+    justify-content: flex-end;
+}
+
+.chatbox .incoming span {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    text-align: center;
+    line-height: 32px;
+    background: #c9d4e2;
+    border-radius: 4px;
+    margin: 0 10px 2px 0;
+}
+
+.chatbox .chat p {
+    white-space: pre-wrap;
+    padding: 12px 16px;
+    border-radius: 10px 10px 0 10px;
+    max-width: 75%;
+    color: #fff;
+    font-size: 0.95rem;
+    background: #33a6fd;
+}
+
+.chatbox .incoming p {
+    border-radius: 10px 10px 10px 0;
+    color: #000;
+    background: #f2f2f2;
+}
+
+.chatbox .chat p.error {
+    color: #721c24;
+    background: #f8d7da;
+}
+
+.chatbox .incoming span img {
+    width: 26px;
+}
+
+/* Chat Input */
+.chatbot .chat-input {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #c8e2ff;
+    padding: 13px 20px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input textarea {
+    height: 50px;
+    width: 90%;
+    border: none;
+    border-bottom: 1px solid #949494;
+    outline: none;
+    resize: none;
+    max-height: 180px;
+    padding: 15px 15px 5px 5px;
+    font-size: 0.95rem;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+.chat-input span {
+    align-self: flex-end;
+    color: #0b4be1;
+    cursor: pointer;
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input span img {
+    margin: 10px;
+    width: 35px;
+}
+
+.chat-input textarea:valid ~ span {
+    visibility: visible;
+}
+
+/* Welcome Section */
+.Welcome {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: #2e8fdf;
+    padding-left: 5vw;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2.2rem;
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    .title-container h1 {
+        font-size: 8vw;
+    }
+    .chatbot {
+        right: 10px;
+        bottom: 80px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 490px) {
+    .chatbot-toggler {
+        right: 20px;
+        bottom: 20px;
+    }
+    .chatbot {
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border-radius: 0;
+        width: 100%;
+    }
+    .chatbot .chatbox {
+        height: 90%;
+        padding: 25px 15px 100px;
+    }
+    .chatbot .chat-input {
+        padding: 10px 15px;
+    }
+    .Welcome {
+        font-size: 1.5rem;
+        padding: 10px;
+        margin-left: 0;
+    }
+}
+</style>
+<body>
+    <!-- loging page html code -->
+     <header>
+        <nav class="navbar">
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+            <a href="#" class="logo">
+                <img src="https://junrypacot.github.io/ChatJP_/logo.jpg" alt="logo">
+                <h2>CHATBOT</h2>   
+            </a>
+            <ul class="links">
+                <span class="close-btn material-symbols-rounded">
+            </ul>
+            <button class="login-btn">LOG IN</button> <br>
+            <button class="login-btn"><a href="/public/index.html">BACK</a></button>
+        </nav>
+    </header>
+    <div class="blur-bg-overlay"></div>
+    <div class="form-popup">
+        <span class="close-btn material-symbols-rounded">close</span>
+        <div class="form-box login">
+            <div class="form-details">
+                <h2>Welcome Back</h2>
+                <p>Please log in using your personal information to stay connected with us.</p>
+            </div>
+            <div class="form-content">
+                <h2>LOGIN</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required>
+                        <label>Create password</label>
+                    </div>
+                    <a href="#" class="forgot-pass-link">Forgot password?</a>
+                    <button type="submit">Log In</button>
+                </form>
+                <div class="bottom-link">
+                    Don't have an account?
+                    <a href="#" id="signup-link">Signup</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-box signup">
+            <div class="form-details">
+                <h2>Create Account</h2>
+                <p>To become a part of our community, please sign up using your personal information.</p>
+            </div>
+            <div class="form-content">
+                <h2>SIGNUP</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Enter user name</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>Enter your email</label>
+                    </div>
+                    <div class="policy-text">
+                        <input type="checkbox" id="policy">
+                        <label for="policy">
+                            I agree the
+                            <a href="#" class="option">Terms & Conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="bottom-link">
+                    Already have an account? 
+                    <a href="#" id="login-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!--chatbot code starts-->
+    <div class="Welcome">
+        WELCOME TO JUNRY'S CHATBOT
+        <br>
+        <br>
+        HOW CAN I ASSIST YOU TODAY?
+    </div>
+    <div class="main">
+        <button class="chatbot-toggler">
+            <span><img src="https://img.icons8.com/?size=256&id=54385&format=png" alt=""></span>
+            <span><img src="https://img.icons8.com/?size=256&id=71200&format=png" alt=""></span>
+        </button>
+        <div class="chatbot">
+            <header>
+                <h2>JUNRY'S CHATBOT</h2>
+                <small><img src="https://img.icons8.com/?size=256&id=JIlJqN3SJL07&format=png" alt="">Online</small>
+                <span class="close-btn"></span>
+            </header>
+            <ul class="chatbox">
+                <li class="chat incoming">
+                    <span><img src="https://img.icons8.com/?size=256&id=37410&format=png" alt=""></span>
+                    <p>Hi there! 👋 Welcome to <strong>JUNRY'S CHATBOT</strong>, powered by the gemini-1.5.
+                    I'm here to assist you - whether you have questions, need help, or just want to chat.
+                    How can I help you today?</p>
+                </li>
+            </ul>
+            <div class="chat-input">
+                <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+                <span id="send-btn"><img src="https://img.icons8.com/?size=256&id=ZznWGhUzgWtS&format=png" alt=""></span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const navbarMenu = document.querySelector(".navbar .links");
+const hamburgerBtn = document.querySelector(".hamburger-btn");
+const hideMenuBtn = navbarMenu.querySelector(".close-btn");
+const showPopupBtn = document.querySelector(".login-btn");
+const formPopup = document.querySelector(".form-popup");
+const hidePopupBtn = formPopup.querySelector(".close-btn");
+const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
+const chatbotToggler = document.querySelector(".chatbot-toggler");
+const closeBtn = document.querySelector(".close-btn");
+const chatbox = document.querySelector(".chatbox");
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
+
+
+// Show mobile menu
+hamburgerBtn.addEventListener("click", () => {
+    navbarMenu.classList.toggle("show-menu");
+});
+
+// Hide mobile menu
+hideMenuBtn.addEventListener("click", () =>  hamburgerBtn.click());
+
+// Show login popup
+showPopupBtn.addEventListener("click", () => {
+    document.body.classList.toggle("show-popup");
+});
+
+// Hide login popup
+hidePopupBtn.addEventListener("click", () => showPopupBtn.click());
+
+// Show or hide signup form
+signupLoginLink.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        formPopup.classList[link.id === 'signup-link' ? 'add' : 'remove']("show-signup");
+    });
+});
+
+let userMessage = null; // Variable to store user's message
+    const API_KEY = "AIzaSyBnAbGbrX2wzLV15JzHta_gtIrgM_BU-fo"; 
+const inputInitHeight = chatInput.scrollHeight;
+
+const createChatLi = (message, className) => {
+    // Create a chat <li> element with passed message and className
+    const chatLi = document.createElement("li");
+    chatLi.classList.add("chat", `${className}`);
+    let chatContent = className === "outgoing" ? `<p></p>` : `  <span><img src="https://img.icons8.com/?size=256&id=37410&format=png" alt=""></span><p></p>`;
+    chatLi.innerHTML = chatContent;
+    chatLi.querySelector("p").textContent = message;
+    return chatLi; // return chat <li> element
+}
+
+const generateResponse = (chatElement) => {
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+    const messageElement = chatElement.querySelector("p");
+    // Define the properties and message for the API request
+    const requestOptions = {
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        body: JSON.stringify({ 
+            contents: [{
+            role: "user",
+            parts: [{ text: userMessage}]
+            }]
+        })
+    }
+    // Send POST request to API, get response and set the reponse as paragraph text
+    fetch(API_URL, requestOptions).then(res => res.json()).then((data) => {
+        messageElement.textContent = data.candidates[0].content.parts[0].text.trim()
+    }).catch(() => {
+        messageElement.classList.add("error");
+        messageElement.textContent = "Oops! Something went wrong. Please try again.";
+    }).finally(() => chatbox.scrollTo(0, chatbox.scrollHeight));
+}
+
+const handleChat = () => {
+    userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+    if(!userMessage) return;
+
+    // Clear the input textarea and set its height to default
+    chatInput.value = "";
+    chatInput.style.height = `${inputInitHeight}px`;
+
+    // Append the user's message to the chatbox
+    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+    
+    setTimeout(() => {
+        // Display "Thinking..." message while waiting for the response
+        const incomingChatLi = createChatLi("...", "incoming");
+        chatbox.appendChild(incomingChatLi);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        generateResponse(incomingChatLi);
+    }, 600);
+}
+
+chatInput.addEventListener("input", () => {
+    // Adjust the height of the input textarea based on its content
+    chatInput.style.height = `${inputInitHeight}px`;
+    chatInput.style.height = `${chatInput.scrollHeight}px`;
+});
+
+chatInput.addEventListener("keydown", (e) => {
+    // If Enter key is pressed without Shift key and the window 
+    // width is greater than 800px, handle the chat
+    if(e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+        e.preventDefault();
+        handleChat();
+    }
+});
+
+sendChatBtn.addEventListener("click", handleChat);
+closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+</script>
+</html>

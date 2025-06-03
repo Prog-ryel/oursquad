@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scientific Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: radial-gradient(circle at 60% 40%, #23243a 0%, #181828 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calculator-shadow {
+            position: absolute;
+            left: 0; right: 0; bottom: -18px;
+            height: 32px;
+            z-index: 1;
+            filter: blur(10px);
+            background: radial-gradient(ellipse at center, #000a 0%, #0000 80%);
+        }
+        .calculator {
+            background: linear-gradient(145deg, #23243a 0%, #181828 80%, #23243a 100%);
+            border-radius: 50px;
+            box-shadow:
+                0 24px 64px 0 #000e,
+                0 2px 12px 0 #fff2 inset,
+                0 0 0 8px #181828cc inset,
+                0 8px 32px 0 #000a;
+            padding: 2.2rem 1.2rem 1.6rem 1.2rem;
+            max-width: 430px;
+            min-width: 270px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.3s, transform 0.2s;
+            perspective: 1200px;
+            /* 3D border effect */
+            border-top: 3px solid #444857;
+            border-left: 3px solid #444857;
+            border-bottom: 3px solid #0d0d0e;
+            border-right: 3px solid #0d0d0e;
+        }
+        .calculator::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            border-radius: 32px 32px 60px 60px/32px 32px 80px 80px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.12) 0%, #fff0 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .calculator::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 18px;
+            border-radius: 0 0 32px 32px/0 0 80px 80px;
+            background: linear-gradient(0deg, #fff2 0%, #fff0 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .calculator .bevel {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50px;
+            box-shadow:
+                0 2px 8px 2px #fff3 inset,
+                0 -2px 8px 2px #0006 inset;
+            pointer-events: none;
+            z-index: 3;
+        }
+        /* 3D Display */
+        .display {
+            width: 90%;
+            height: 60px;
+            margin-bottom: 18px;
+            font-size: 2.1em;
+            text-align: right;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(180deg, #f8fafc 0%, #e3f0ff 60%, #cfd8dc 100%);
+            box-shadow:
+                0 2px 8px #0002 inset,
+                0 1px 0 #fff8,
+                0 8px 24px #0006,
+                0 0 0 6px #fff2 inset,
+                0 8px 32px #b3b3b3cc;
+            outline: none;
+            color: #23243a;
+            font-family: 'Consolas', 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 1.2px;
+            transition: box-shadow 0.2s, background 0.2s;
+            user-select: all;
+            margin-top: 10px;
+            position: relative;
+            z-index: 4;
+            animation: displayIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+            text-shadow:
+                0 2px 8px #fff8,
+                0 1px 0 #0004,
+                0 0 12px #fff8;
+        }
+        .display:focus {
+            box-shadow: 0 0 0 2px #90caf9, 0 2px 8px #0002 inset, 0 1px 0 #fff8;
+            background: linear-gradient(180deg, #fff 60%, #e3f0ff 100%);
+        }
+        .display:not(:placeholder-shown) {
+            /* When input has content, add more 3D effect */
+            box-shadow:
+                0 2px 8px #0002 inset,
+                0 1px 0 #fff8,
+                0 8px 24px #0006,
+                0 0 0 6px #fff2 inset,
+                0 8px 32px #b3b3b3cc,
+                0 0 24px #ffe08288;
+            background: linear-gradient(180deg, #f8fafc 0%, #fffbe6 40%, #e3f0ff 100%);
+            filter: drop-shadow(0 0 10px #ffe08288);
+        }
+        @keyframes displayIn {
+            from { opacity: 0; transform: translateY(-30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .history {
+            min-height: 18px;
+            color: #ffe082;
+            font-size: 1em;
+            text-align: right;
+            margin-bottom: 6px;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+            user-select: text;
+            width: 95%;
+            font-family: 'Consolas', 'Segoe UI', Arial, sans-serif;
+            text-shadow: 0 1px 2px #000a;
+            z-index: 4;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 13px;
+            width: 100%;
+            margin-top: 10px;
+            z-index: 4;
+        }
+        button {
+            padding: 18px 0;
+            font-size: 1.08em;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #f8f8fa 0%, #e0e0e0 40%, #b0b0b0 100%);
+            box-shadow:
+                0 8px 0 #8888,
+                0 3px 12px #0004,
+                0 0.5px 0 #fff8 inset,
+                0 0.5px 2px #fff4 inset,
+                0 18px 36px #0007,
+                0 2px 0 #fff8 inset;
+            cursor: pointer;
+            font-weight: 700;
+            color: #23243a;
+            outline: none;
+            position: relative;
+            transition:
+                background 0.18s,
+                transform 0.1s,
+                box-shadow 0.18s,
+                color 0.18s;
+            text-shadow:
+                0 1px 0 #fff8,
+                0 2px 8px #fff8,
+                0 0.5px 0 #fff8;
+            overflow: hidden;
+            animation: btnFadeIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+            perspective: 400px;
+            border-bottom: 8px solid #8888;
+            border-right: 3px solid #bbb;
+            border-left: 3px solid #fff4;
+            box-sizing: border-box;
+            /* Simulate a plastic rim and a deep shadow for more realism */
+        }
+        button:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 7px; left: 7px; right: 7px; bottom: 12px;
+            border-radius: 10px;
+            background: linear-gradient(120deg, #fff9 0%, #fff0 100%);
+            z-index: 1;
+            pointer-events: none;
+            box-shadow: 0 2px 12px #fff8 inset, 0 0.5px 0 #fff8 inset;
+        }
+        button:after {
+            content: "";
+            position: absolute;
+            left: 50%; top: 16%;
+            width: 60%;
+            height: 16%;
+            transform: translate(-50%, 0) rotate(-8deg);
+            background: linear-gradient(90deg, #fff9 0%, #fff0 100%);
+            border-radius: 50%;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 2;
+            filter: blur(1.5px);
+        }
+        button:active:before {
+            background: none;
+        }
+        button:active {
+            background: linear-gradient(180deg, #bdbdbd 80%, #e0e0e0 100%);
+            transform: translateY(8px) scale(0.965) rotateX(16deg);
+            box-shadow: 0 2px 0 #8888, 0 2px 8px #0004;
+            border-bottom: 2px solid #8888;
+        }
+        button:focus {
+            outline: 2px solid #90caf9;
+        }
+        button.operator {
+            background: linear-gradient(180deg, #ffe082 0%, #ffd180 40%, #ffb300 100%);
+            color: #7a4a00;
+            box-shadow: 0 8px 0 #bfa14a88, 0 3px 12px #bfa14a44, 0 18px 36px #bfa14a44;
+            border-bottom: 8px solid #bfa14a88;
+        }
+        button.equal {
+            background: linear-gradient(180deg, #a5d6a7 0%, #43a047 40%, #2e7d32 100%);
+            color: #fff;
+            grid-column: span 2;
+            box-shadow: 0 8px 0 #2e7d3288, 0 3px 12px #2e7d3244, 0 18px 36px #2e7d3244;
+            font-size: 1.2em;
+            border-bottom: 8px solid #2e7d3288;
+        }
+        button.clear {
+            background: linear-gradient(180deg, #ffcdd2 0%, #e57373 40%, #b71c1c 100%);
+            color: #fff;
+            box-shadow: 0 8px 0 #b71c1c88, 0 3px 12px #b71c1c44, 0 18px 36px #b71c1c44;
+            border-bottom: 8px solid #b71c1c88;
+        }
+        button.special {
+            background: linear-gradient(180deg, #e3f7ff 0%, #b3e5fc 40%, #0288d1 100%);
+            color: #01579b;
+            box-shadow: 0 8px 0 #0288d188, 0 3px 12px #0288d144, 0 18px 36px #0288d144;
+            border-bottom: 8px solid #0288d188;
+        }
+        button:hover:not(:active) {
+            filter: brightness(1.22) drop-shadow(0 0 14px #fff7);
+            z-index: 2;
+            transform: translateY(-2px) scale(1.08) rotateX(8deg);
+            box-shadow:
+                0 16px 36px #fff4,
+                0 8px 0 #8888,
+                0 3px 12px #0003,
+                0 0.5px 0 #fff8 inset,
+                0 0.5px 2px #fff4 inset,
+                0 18px 36px #0007;
+        }
+        button:active {
+            filter: brightness(0.89);
+        }
+        button.operator:hover, button.special:hover {
+            box-shadow: 0 0 28px 8px #ffd180cc, 0 8px 0 #bfa14a88, 0 3px 12px #bfa14a44, 0 18px 36px #bfa14a44;
+        }
+        button.equal:hover {
+            box-shadow: 0 0 30px 8px #43a047cc, 0 8px 0 #2e7d3288, 0 3px 12px #2e7d3244, 0 18px 36px #2e7d3244;
+        }
+        button.clear:hover {
+            box-shadow: 0 0 30px 8px #e57373cc, 0 8px 0 #b71c1c88, 0 3px 12px #b71c1c44, 0 18px 36px #b71c1c44;
+        }
+        @keyframes lightningGlow {
+            0% {
+                text-shadow:
+                    0 0 12px #fffbe6,
+                    0 0 24px #ffe082,
+                    0 2px 8px #000a,
+                    0 1px 0 #fff4;
+                filter: drop-shadow(0 0 8px #ffe082cc);
+            }
+            100% {
+                text-shadow:
+                    0 0 24px #fffbe6,
+                    0 0 40px #ffe082,
+                    0 2px 12px #ffe082,
+                    0 1px 0 #fff4;
+                filter: drop-shadow(0 0 16px #ffe082cc);
+            }
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .calculator {
+                padding: 1.2rem 0.5rem;
+                max-width: 98vw;
+                min-width: unset;
+            }
+            .display {
+                font-size: 1.3em;
+                height: 40px;
+                padding: 7px 10px;
+            }
+            .buttons {
+                gap: 8px;
+            }
+            button {
+                padding: 11px 0;
+                font-size: 0.95em;
+            }
+        }
+        @media (max-width: 400px) {
+            .calculator {
+                padding: 0.5rem 0.2rem;
+            }
+            .display {
+                font-size: 1em;
+                height: 32px;
+                padding: 5px 6px;
+            }
+            button {
+                padding: 7px 0;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="keySound" src="CLICK.mp3" preload="auto"></audio>
+    <div class="calculator-outer3d">
+        <div class="calculator-cover"></div>
+        <div class="calculator-shadow"></div>
+        <div class="calculator">
+            <div class="bevel"></div>
+            <div style="
+                width:100%;
+                text-align:center;
+                font-size:1.5em;
+                font-weight:bold;
+                color:#ffe082;
+                letter-spacing:2px;
+                margin-bottom:12px;
+                text-shadow:
+                    0 0 12px #fffbe6,
+                    0 0 24px #ffe082,
+                    0 2px 8px #000a,
+                    0 1px 0 #fff4;
+                z-index:5;
+                position:relative;
+                user-select:none;
+                filter: drop-shadow(0 0 8px #ffe082cc);
+                animation: lightningGlow 2s infinite alternate;
+            ">
+                SCIENTIFIC CALCULATOR
+            </div>
+            <div class="history" id="history"></div>
+            <input type="text" class="display" id="display" readonly placeholder="0">
+            <div class="buttons">
+                <button class="clear" onclick="clearDisplay()">C</button>
+                <button onclick="backspace()">⌫</button>
+                <button onclick="append('(')">(</button>
+                <button onclick="append(')')">)</button>
+                <button class="operator" onclick="append('/')">÷</button>
+                <button onclick="append('7')">7</button>
+                <button onclick="append('8')">8</button>
+                <button onclick="append('9')">9</button>
+                <button class="operator" onclick="append('*')">×</button>
+                <button class="special" onclick="append('^')">xʸ</button>
+                <button onclick="append('4')">4</button>
+                <button onclick="append('5')">5</button>
+                <button onclick="append('6')">6</button>
+                <button class="operator" onclick="append('-')">−</button>
+                <button class="special" onclick="append('sqrt(')">√</button>
+                <button onclick="append('1')">1</button>
+                <button onclick="append('2')">2</button>
+                <button onclick="append('3')">3</button>
+                <button class="operator" onclick="append('+')">+</button>
+                <button class="special" onclick="append('log(')">log</button>
+                <button onclick="append('0')">0</button>
+                <button onclick="append('.')">.</button>
+                <button class="special" onclick="append('pi')">π</button>
+                <button class="special" onclick="append('e')">e</button>
+                <button class="special" onclick="append('ln(')">ln</button>
+                <button class="special" onclick="append('sin(')">sin</button>
+                <button class="special" onclick="append('cos(')">cos</button>
+                <button class="special" onclick="append('tan(')">tan</button>
+                <button class="equal" onclick="calculate()">=</button>
+            </div>
+            <div style="
+                width:100%;
+                text-align:center;
+                margin-top:18px;
+                font-size:1em;
+                color:#ffe082;
+                opacity:0.95;
+                letter-spacing:1px;
+                text-shadow:
+                    0 0 10px #fffbe6,
+                    0 0 18px #ffe082,
+                    0 1px 2px #000a;
+                filter: drop-shadow(0 0 6px #ffe082cc);
+                animation: lightningGlow 2s 1s infinite alternate;
+            ">
+                Developed by: Junry Pacot
+            </div>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+        const history = document.getElementById('history');
+        let lastResult = '';
+
+        function append(char) {
+            if (char === 'pi') {
+                display.value += 'π';
+            } else if (char === 'e') {
+                display.value += 'e';
+            } else {
+                display.value += char;
+            }
+            display.classList.add('input-3d');
+            setTimeout(() => display.classList.remove('input-3d'), 180);
+        }
+
+        function clearDisplay() {
+            display.value = '';
+            history.textContent = '';
+        }
+
+        function backspace() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            let expr = display.value
+                .replace(/π/g, 'Math.PI')
+                .replace(/e/g, 'Math.E')
+                .replace(/√/g, 'Math.sqrt')
+                .replace(/(\d+)\^(\d+)/g, 'Math.pow($1,$2)')
+                .replace(/(\d+(\.\d+)?)\^(\d+(\.\d+)?)/g, 'Math.pow($1,$3)')
+                .replace(/(\d+|\))\s*log\(/g, '$1*Math.log10(')
+                .replace(/(\d+|\))\s*ln\(/g, '$1*Math.log(')
+                .replace(/(\d+|\))\s*sin\(/g, '$1*Math.sin(')
+                .replace(/(\d+|\))\s*cos\(/g, '$1*Math.cos(')
+                .replace(/(\d+|\))\s*tan\(/g, '$1*Math.tan(')
+                .replace(/log\(/g, 'Math.log10(')
+                .replace(/ln\(/g, 'Math.log(')
+                .replace(/sin\(/g, 'Math.sin(')
+                .replace(/cos\(/g, 'Math.cos(')
+                .replace(/tan\(/g, 'Math.tan(')
+                .replace(/\^/g, '**'); // fallback for ^
+
+            try {
+                let result = eval(expr);
+                if (typeof result === 'number' && !isNaN(result) && isFinite(result)) {
+                    history.textContent = display.value + ' =';
+                    display.value = result;
+                    lastResult = result;
+                } else {
+                    display.value = 'Error';
+                }
+            } catch {
+                display.value = 'Error';
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '0' && e.key <= '9') append(e.key);
+            if (e.key === '.') append('.');
+            if (e.key === '+') append('+');
+            if (e.key === '-') append('-');
+            if (e.key === '*') append('*');
+            if (e.key === '/') append('/');
+            if (e.key === '(') append('(');
+            if (e.key === ')') append(')');
+            if (e.key === 'Enter' || e.key === '=') calculate();
+            if (e.key === 'Backspace') backspace();
+            if (e.key === 'Delete') clearDisplay();
+        });
+
+        // Play key sound on every button click
+        const keySound = document.getElementById('keySound');
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.buttons button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (keySound) {
+                        keySound.currentTime = 0;
+                        keySound.play();
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        /* 3D animation for display when input */
+        .display.input-3d {
+            box-shadow:
+                0 2px 8px #0002 inset,
+                0 1px 0 #fff8,
+                0 8px 24px #0006,
+                0 0 0 6px #ffe08288 inset,
+                0 0 32px #ffe082cc,
+                0 0 24px #ffe08288;
+            background: linear-gradient(180deg, #fffbe6 0%, #fff 60%, #e3f0ff 100%);
+            filter: drop-shadow(0 0 16px #ffe082cc);
+            transition: box-shadow 0.18s, background 0.18s, filter 0.18s;
+        }
+        .calculator-outer3d {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1800px;
+            min-height: 100vh;
+        }
+        .calculator-cover {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1.04) rotateX(7deg);
+            width: 440px;
+            height: 540px;
+            background: linear-gradient(135deg, #23243a 60%, #181828 100%);
+            border-radius: 48px 48px 60px 60px/40px 40px 80px 80px;
+            box-shadow:
+                0 18px 40px 0 #000b,
+                0 2px 16px 0 #fff1 inset,
+                0 0 0 8px #181828cc inset,
+                0 8px 32px 0 #000a,
+                0 0 40px 0 #0007;
+            z-index: 0;
+            border-top: 4px solid #444857;
+            border-left: 4px solid #444857;
+            border-bottom: 7px solid #0d0d0e;
+            border-right: 7px solid #0d0d0e;
+            pointer-events: none;
+            filter: blur(0.2px);
+        }
+    </style>
+</body>
+</html>
