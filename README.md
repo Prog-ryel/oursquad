@@ -1,6 +1,8 @@
 # Friends Website
 
 A modern and interactive website to showcase information about you and your friends.
+## this is our website 
+oursquad-three.vercel.app
 
 ## Features
 
