@@ -4,7 +4,7 @@ A modern and interactive website to showcase information about you and your frie
 ## this is our website 
 ```bash
 oursquad-three.vercel.app
-
+```
 ## Features
 
 - Responsive design that works on all devices
