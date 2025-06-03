@@ -20,6 +20,13 @@
     
 </style>
 <body>
+     <script>
+    // Redirect to loginpage.html if not logged in
+    if (localStorage.getItem("loggedIn") !== "true") {
+      window.location.href = "loginpage.html";
+    }
+  </script>
+    
     <!-- Desktop Theme Toggle -->
     <button class="desktop-theme-toggle" id="desktop-theme-toggle" onclick="toggleTheme()">
         <i class="fas fa-moon"></i>
@@ -39,6 +46,7 @@
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#journey">Journey</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="loginpage.html" onclick="logoutUser()">logout</a></li>
                     <!-- Mobile Theme Toggle -->
                     <li class="theme-toggle-item">
                         <button id="theme-toggle" onclick="toggleTheme()">
@@ -1250,6 +1258,14 @@
     <script src="js/script.js"></script>
     <script>
 
+        function logoutUser() {
+  localStorage.removeItem("loggedIn");
+  // Optional: also remove username and password
+  // localStorage.removeItem("username");
+  // localStorage.removeItem("password");
+  window.location.href = "loginpage.html";
+}
+    
       function toggleDropdown() {
     const dropdown = document.getElementById("contactDropdown");
     dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
